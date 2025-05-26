@@ -1,0 +1,22 @@
+.candidate-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+}
+
+.candidate-votes {
+    font-weight: bold;
+    color: #0d6efd;
+}
+
+#voteButton {
+    width: 100%;
+}
+
+.alert {
+    margin-bottom: 1rem;
+} 
