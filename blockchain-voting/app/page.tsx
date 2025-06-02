@@ -17,30 +17,34 @@ interface Candidate {
   voteCount: string
   position: string
   party: string
+  image?: string
 }
 
 // Mock data for development
 const mockCandidates: Candidate[] = [
   {
     id: "1",
-    name: "John Doe",
+    name: "Uwera Marie Reinne",
     voteCount: "150",
     position: "President",
-    party: "Party A"
+    party: "Cligax party",
+    image: "/candidates/candidate-1.jpg"
   },
   {
     id: "2",
-    name: "Jane Smith",
+    name: "Muhizi Nathan",
     voteCount: "120",
     position: "President",
-    party: "Party B"
+    party: "Green Party",
+    image: "/candidates/candidate-2.jpg"
   },
   {
     id: "3",
-    name: "Mike Johnson",
+    name: "Zigirumugabe Martin",
     voteCount: "140",
     position: "Vice President",
-    party: "Party A"
+    party: "Liberation Party",
+    image: "/candidates/candidate-3.jpg"
   }
 ]
 
@@ -69,7 +73,8 @@ export default function HomePage() {
       const mappedCandidates: Candidate[] = candidatesData.map((candidate, index) => ({
         ...candidate,
         position: mockCandidates[index]?.position || "Unknown Position",
-        party: mockCandidates[index]?.party || "Independent"
+        party: mockCandidates[index]?.party || "Independent",
+        image: `/candidates/candidate-${candidate.id}.jpg`
       }))
 
       setCandidates(mappedCandidates)
@@ -128,7 +133,7 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto space-y-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h1 className="text-3xl font-bold gradient-text mb-2">Vote chain's Election</h1>
+              <h1 className="text-3xl font-bold gradient-text mb-2">CommunityChoice</h1>
               <p className="text-muted-foreground">
                 {!isElectionActive 
                   ? "This election is currently inactive."
@@ -142,7 +147,7 @@ export default function HomePage() {
 
           {hasUserVoted && <VoteStatus />}
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
             {candidates.map((candidate) => (
               <CandidateCard
                 key={candidate.id}
@@ -151,6 +156,7 @@ export default function HomePage() {
                 voteCount={candidate.voteCount}
                 position={candidate.position}
                 party={candidate.party}
+                image={candidate.image}
                 disabled={!isElectionActive || hasUserVoted}
               />
             ))}

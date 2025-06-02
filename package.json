@@ -1,7 +1,7 @@
 {
-  "name": "voting-dapp",
+  "name": "community-choice",
   "version": "1.0.0",
-  "description": "A decentralized voting application",
+  "description": "A decentralized community voting platform",
   "main": "index.js",
   "scripts": {
     "test": "truffle test",

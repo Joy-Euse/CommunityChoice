@@ -1,6 +1,6 @@
-# VoteChain - Decentralized Voting Platform
+# CommunityChoice - Decentralized Voting Platform
 
-VoteChain is a modern, secure, and transparent decentralized voting platform built on the Ethereum blockchain. It enables organizations to conduct fair and tamper-proof elections while providing real-time analytics and a user-friendly interface.
+CommunityChoice is a modern, secure, and transparent decentralized voting platform built on the Ethereum blockchain. It enables organizations to conduct fair and tamper-proof elections while providing real-time analytics and a user-friendly interface.
 
 
 
@@ -27,8 +27,8 @@ VoteChain is a modern, secure, and transparent decentralized voting platform bui
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/voting-dapp.git
-cd voting-dapp
+git clone https://github.com/yourusername/community-choice.git
+cd community-choice
 ```
 
 2. Install dependencies:
@@ -59,7 +59,7 @@ npm run dev
 ## 📁 Project Structure
 
 ```
-voting-dapp/
+community-choice/
 ├── blockchain-voting/     # Frontend application
 │   ├── app/              # Next.js pages
 │   ├── components/       # React components

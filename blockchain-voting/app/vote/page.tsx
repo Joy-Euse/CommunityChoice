@@ -164,98 +164,107 @@ export default function VotePage() {
       </div>
     )
   }
-
-  return (
-    <div className="container py-12">
-      <div className="flex flex-col items-center max-w-4xl mx-auto">
-        <div className="w-full mb-8">
-          <Link href="/" className="inline-block mb-4">
-            <Button variant="ghost" size="sm" className="gap-1">
-              <ArrowLeft className="h-4 w-4" />
-              Back to Home
-            </Button>
-          </Link>
-          <div className="flex items-center gap-3 mb-2">
-            <img src="/images/unizik-logo.png" alt="UNIZIK Logo" className="h-10 w-auto" />
-            <h1 className="text-3xl font-bold">Cast Your Vote</h1>
-          </div>
-          <p className="text-muted-foreground">
-            Select your preferred candidates for each position in the Student Council Election 2025
-          </p>
+return (
+  <div className="container py-12">
+    <div className="flex flex-col items-center max-w-4xl mx-auto">
+      <div className="w-full mb-10">
+        <Link href="/" className="inline-block mb-5">
+          <Button variant="ghost" size="sm" className="gap-1 text-muted-foreground hover:text-primary">
+            <ArrowLeft className="h-4 w-4" />
+            Back to Home
+          </Button>
+        </Link>
+        <div className="flex items-center gap-3 mb-3">
+          <img src="/images/unizik-logo.png" alt="UNIZIK Logo" className="h-10 w-auto" />
+          <h1 className="text-3xl font-semibold text-gray-800">Cast Your Vote</h1>
         </div>
-
-        <Alert className="mb-6">
-          <Info className="h-4 w-4" />
-          <AlertTitle>Important Information</AlertTitle>
-          <AlertDescription>
-            Your vote will be recorded on the Ethereum blockchain and cannot be changed once submitted. Make sure to
-            review your choices before confirming.
-          </AlertDescription>
-        </Alert>
-
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>ZIKITESVOTE Election 2025</CardTitle>
-            <CardDescription>Voting period: April 20 - April 25, 2025</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Tabs value={activePosition} onValueChange={setActivePosition} className="w-full">
-              <TabsList className="grid grid-cols-3 mb-6">
-                {positions.slice(0, 3).map((position) => (
-                  <TabsTrigger key={position.id} value={position.id}>
-                    {position.title}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-              {positions.map((position) => (
-                <TabsContent key={position.id} value={position.id} className="space-y-4">
-                  <div className="space-y-4">
-                    <h3 className="font-medium text-lg">{position.title}</h3>
-                    <p className="text-sm text-muted-foreground mb-4">Select one candidate for this position</p>
-                    <RadioGroup
-                      value={selectedCandidates[position.id] || ""}
-                      onValueChange={(value) => handleSelectCandidate(position.id, value)}
-                    >
-                      {position.candidates.map((candidate) => (
-                        <div
-                          key={candidate.id}
-                          className={`flex items-center space-x-2 rounded-lg border p-4 ${
-                            selectedCandidates[position.id] === candidate.id
-                              ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/20"
-                              : ""
-                          }`}
-                        >
-                          <RadioGroupItem value={candidate.id} id={candidate.id} />
-                          <Label htmlFor={candidate.id} className="flex flex-col cursor-pointer w-full">
-                            <span className="font-medium">{candidate.name}</span>
-                            <span className="text-sm text-muted-foreground">{candidate.party}</span>
-                          </Label>
-                        </div>
-                      ))}
-                    </RadioGroup>
-                  </div>
-                </TabsContent>
-              ))}
-            </Tabs>
-          </CardContent>
-          <CardFooter className="flex flex-col border-t pt-6">
-            <Button onClick={handleVote} disabled={!isFormComplete() || submitting} className="w-full mb-4" size="lg">
-              {submitting ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Processing...
-                </>
-              ) : (
-                "Submit Vote"
-              )}
-            </Button>
-            <p className="text-xs text-muted-foreground text-center">
-              By submitting your vote, you confirm that you are eligible to vote in this election and that you are
-              casting your vote of your own free will.
-            </p>
-          </CardFooter>
-        </Card>
+        <p className="text-sm text-gray-500">
+          Select your preferred candidates for each position in the Student Council Election 2025
+        </p>
       </div>
+
+      <Alert className="mb-8 border border-blue-200 bg-blue-50 text-blue-800">
+        <Info className="h-4 w-4" />
+        <AlertTitle className="font-semibold">Important Information</AlertTitle>
+        <AlertDescription className="text-sm">
+          Your vote will be recorded on the Ethereum blockchain and cannot be changed once submitted. Make sure to
+          review your choices before confirming.
+        </AlertDescription>
+      </Alert>
+
+      <Card className="w-full shadow-sm border border-gray-200 bg-white">
+        <CardHeader>
+          <CardTitle className="text-xl font-semibold text-gray-800">ZIKITESVOTE Election 2025</CardTitle>
+          <CardDescription className="text-sm text-gray-500">Voting period: April 20 - April 25, 2025</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Tabs value={activePosition} onValueChange={setActivePosition} className="w-full">
+            <TabsList className="grid grid-cols-3 mb-6 bg-gray-100 p-1 rounded-md">
+              {positions.slice(0, 3).map((position) => (
+                <TabsTrigger
+                  key={position.id}
+                  value={position.id}
+                  className="text-sm font-medium data-[state=active]:bg-white data-[state=active]:shadow"
+                >
+                  {position.title}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            {positions.map((position) => (
+              <TabsContent key={position.id} value={position.id} className="space-y-4">
+                <div className="space-y-4">
+                  <h3 className="font-medium text-lg text-gray-800">{position.title}</h3>
+                  <p className="text-sm text-gray-500 mb-2">Select one candidate for this position</p>
+                  <RadioGroup
+                    value={selectedCandidates[position.id] || ""}
+                    onValueChange={(value) => handleSelectCandidate(position.id, value)}
+                  >
+                    {position.candidates.map((candidate) => (
+                      <div
+                        key={candidate.id}
+                        className={`flex items-center space-x-3 rounded-md border px-4 py-3 transition-colors ${
+                          selectedCandidates[position.id] === candidate.id
+                            ? "border-emerald-500 bg-emerald-50"
+                            : "border-gray-200 bg-gray-50 hover:bg-gray-100"
+                        }`}
+                      >
+                        <RadioGroupItem value={candidate.id} id={candidate.id} />
+                        <Label htmlFor={candidate.id} className="flex flex-col cursor-pointer w-full">
+                          <span className="font-medium text-gray-800">{candidate.name}</span>
+                          <span className="text-sm text-gray-500">{candidate.party}</span>
+                        </Label>
+                      </div>
+                    ))}
+                  </RadioGroup>
+                </div>
+              </TabsContent>
+            ))}
+          </Tabs>
+        </CardContent>
+        <CardFooter className="flex flex-col border-t pt-6 bg-gray-50">
+          <Button
+            onClick={handleVote}
+            disabled={!isFormComplete() || submitting}
+            className="w-full mb-4 text-white bg-emerald-600 hover:bg-emerald-700"
+            size="lg"
+          >
+            {submitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Processing...
+              </>
+            ) : (
+              "Submit Vote"
+            )}
+          </Button>
+          <p className="text-xs text-gray-500 text-center px-4">
+            By submitting your vote, you confirm that you are eligible to vote in this election and that you are casting
+            your vote of your own free will.
+          </p>
+        </CardFooter>
+      </Card>
     </div>
-  )
+  </div>
+)
+
 }

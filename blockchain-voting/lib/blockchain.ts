@@ -548,7 +548,8 @@ export async function getCandidates() {
       name: candidate.name,
       voteCount: candidate.voteCount.toString(),
       position: "Candidate",
-      party: "Independent"
+      party: "Independent",
+      image: `/candidates/candidate-${candidate.id.toString()}.jpg`
     }))
   } catch (error) {
     console.error("Error getting candidates:", error)
