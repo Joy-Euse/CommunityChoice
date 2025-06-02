@@ -24,8 +24,6 @@ next-env.d.ts
 *.sol.js
 
 # Environment files
-.env
-.env.local
 .env.development.local
 .env.test.local
 .env.production.local
@@ -45,7 +43,6 @@ yarn-error.log*
 *.launch
 .settings/
 *.sublime-workspace
-.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -106,11 +103,9 @@ next-env.d.ts
 .yarn-integrity
 
 # dotenv environment variable files
-.env
 .env.development.local
 .env.test.local
 .env.production.local
-.env.local
 
 # vercel
 .vercel
@@ -137,3 +132,4 @@ typechain-types
 # Hardhat files
 cache
 artifacts 
+config.bat
